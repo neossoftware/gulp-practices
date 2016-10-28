@@ -17,4 +17,10 @@ gulp.task('copy-index', function() {
      .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default',['copy-index']);
+gulp.task('images', function() {
+  return gulp
+      .src('images/*.{png,jpg}') //in this case it doesnt have spaces ;)
+      .pipe(gulp.dest('dist/images'));
+});
+
+gulp.task('default',['copy-index', 'images']);
