@@ -17,10 +17,20 @@ gulp.task('copy-index', function() {
      .pipe(gulp.dest('dist'));
 });
 
+//  .src('images/**/*.{png,jpg}') copy n level in image folder
+
 gulp.task('images', function() {
   return gulp
-      .src('images/*.{png,jpg}') //in this case it doesnt have spaces ;)
+      .src('images/**/*.{png,jpg}') //in this case it doesnt have spaces ;)
       .pipe(gulp.dest('dist/images'));
 });
 
-gulp.task('default',['copy-index', 'images']);
+//copy /exclude
+
+gulp.task('data', function() {
+     return gulp
+       .src(['json/*.json','xml/*.xml','!json/*-secret.json'])
+       .pipe(gulp.dest('dist/data'))       
+});
+
+gulp.task('default',['copy-index', 'images', 'data']);
